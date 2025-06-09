@@ -5,14 +5,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jzhou_utils"
-version = "0.0.3"
+version = "0.0.5"
 dependencies = [
     "requests",
     "numpy",
     "pandas",
     "datetime",
     "typing",
-    "re"
 ]
 authors = [
   { name="Jason Zhou", email="author@example.com" },

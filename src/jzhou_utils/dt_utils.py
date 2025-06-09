@@ -2,7 +2,7 @@ import pandas as pd
 import datetime as dt
 from typing import Union
 
-def YYYMM_to_date(s: pd.Series) -> pd.Series:
+def YYYYMM_to_date(s: pd.Series) -> pd.Series:
     """
         converts series of integers into dates
     """
@@ -27,4 +27,3 @@ def get_friday_of_isocalendar(iso_year, iso_week):
     days_to_friday = (4 - first_day_of_week.weekday()) % 7
     friday = first_day_of_week + dt.timedelta(days=days_to_friday)
     return friday
-
