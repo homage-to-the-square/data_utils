@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jzhou_utils"
-version = "0.0.7"
+version = "0.0.8"
 # note: re, warnings should not be added as dependencies
 dependencies = [
     "requests",
