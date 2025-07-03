@@ -5,18 +5,22 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jzhou_utils"
-version = "0.0.5"
+version = "0.0.7"
+# note: re, warnings should not be added as dependencies
 dependencies = [
     "requests",
     "numpy",
     "pandas",
+    "scipy",
     "datetime",
     "typing",
+    "plotly"
 ]
+
 authors = [
-  { name="Jason Zhou", email="author@example.com" },
+  { name="Jason Zhou", email="jason.zhou.statistics@gmail.com" },
 ]
-description = "A small example package"
+description = "A package of miscellaneous but useful utils for data science et al."
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
@@ -27,5 +31,5 @@ license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
 [project.urls]
-Homepage = "https://github.com/pypa/sampleproject"
-Issues = "https://github.com/pypa/sampleproject/issues"
+Homepage = "https://github.com/homage-to-the-square/data_utils"
+Issues = "https://github.com/homage-to-the-square/data_utils/issues"
