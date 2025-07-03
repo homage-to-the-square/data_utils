@@ -8,7 +8,10 @@ def map_dicts_values_to_keys(dict1, dict2) -> dict:
     """
     return {k: dict2[v] for k, v in dict1.items() if v in dict2}
 
-def is_decimal(string):
+def is_decimal(string: str) -> bool:
+    """
+        Given a string, checks if it is a representation of a decimal and returns a boolean 
+    """
     return bool(re.match(r"^-?\d+(\.\d+)?$", string))
 
 def intersect_sets(sets: List[Set[Any]]) -> Set[Any]:

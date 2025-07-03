@@ -27,3 +27,21 @@ def str_to_float_df(df: pd.DataFrame) -> pd.DataFrame:
         except Exception as e:
             pass  # Skip columns that can't be converted
     return df_converted
+
+import numpy as np
+
+def format_size(size_bytes) -> str:
+    """Convert bytes to a human-readable format."""
+    for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+        if size_bytes < 1024.0:
+            return f"{size_bytes:,.2f} {unit}"
+        size_bytes /= 1024.0
+    return f"{size_bytes:,.2f} PB"
+    
+def print_array_memory_usage(arr: np.array) -> None:
+    """Print memory usage of numpy array in human-readable format."""
+    if not isinstance(arr, np.ndarray):
+        print(f"Input is not a numpy array.")
+        return
+    size_bytes = arr.nbytes
+    print(f"Array size: {format_size(size_bytes)}")

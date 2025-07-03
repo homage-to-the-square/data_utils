@@ -4,7 +4,7 @@ from typing import Union
 
 def YYYYMM_to_date(s: pd.Series) -> pd.Series:
     """
-        converts series of integers into dates
+        converts series of integers of form YYYYMM into dates
     """
     return pd.to_datetime(s.astype(str), format='%Y%m').dt.date
 
@@ -16,7 +16,7 @@ def date_id_to_date(date_id: Union[int, pd.Series]):
 
 def date_to_date_id(date: dt.date) -> int:
     return int(date.strftime('%Y%m%d'))
-    
+
 def get_friday_of_isocalendar(iso_year, iso_week):
     # Get the first day of the ISO week
     first_day_of_week = dt.date(iso_year, 1, 1) + dt.timedelta(weeks=iso_week-1)
