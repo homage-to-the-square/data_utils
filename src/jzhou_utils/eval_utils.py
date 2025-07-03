@@ -1,5 +1,13 @@
 import numpy as np
+from scipy.stats import norm
 
+def normal_CI_2_sided_multiplier(alpha: float) -> float:
+    """
+    Given significance level alpha (e.g., 0.05), return the confidence interval multiplier.
+    """
+    return norm.ppf(1 - alpha / 2)
+
+    
 def compute_sharpe_w_cov(
     weights: np.ndarray, mu: np.ndarray, Sigma: np.ndarray
 ) -> list:

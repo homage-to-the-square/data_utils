@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 """
     Df utils:
@@ -28,8 +29,6 @@ def str_to_float_df(df: pd.DataFrame) -> pd.DataFrame:
             pass  # Skip columns that can't be converted
     return df_converted
 
-import numpy as np
-
 def format_size(size_bytes) -> str:
     """Convert bytes to a human-readable format."""
     for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
@@ -38,7 +37,7 @@ def format_size(size_bytes) -> str:
         size_bytes /= 1024.0
     return f"{size_bytes:,.2f} PB"
     
-def print_array_memory_usage(arr: np.array) -> None:
+def print_np_arr_mem_usage(arr: np.array) -> None:
     """Print memory usage of numpy array in human-readable format."""
     if not isinstance(arr, np.ndarray):
         print(f"Input is not a numpy array.")
