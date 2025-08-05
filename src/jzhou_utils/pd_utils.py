@@ -29,6 +29,44 @@ def str_to_float_df(df: pd.DataFrame) -> pd.DataFrame:
             pass  # Skip columns that can't be converted
     return df_converted
 
+def cov_to_corr_and_var(cov: np.array):
+    """
+    Convert a covariance matrix to a correlation matrix and extract variances.
+
+    Parameters:
+        cov (np.ndarray): Covariance matrix (n x n)
+
+    Returns:
+        corr (np.ndarray): Correlation matrix (n x n)
+        variances (np.ndarray): Variance vector (n,)
+    """
+    variances = np.diag(cov)
+    stddev = np.sqrt(variances)
+    outer_stddev = np.outer(stddev, stddev)
+    
+    # Avoid division by zero
+    with np.errstate(divide='ignore', invalid='ignore'):
+        corr = cov / outer_stddev
+        corr[outer_stddev == 0] = 0  # Set entries to 0 where stddev is zero
+    
+    return corr, variances
+
+def corr_and_var_to_cov(corr, variances):
+    """
+    Convert a correlation matrix and variances to a covariance matrix.
+
+    Parameters:
+        corr (np.ndarray): Correlation matrix (n x n)
+        variances (np.ndarray): Variance vector (n,)
+
+    Returns:
+        cov (np.ndarray): Covariance matrix (n x n)
+    """
+    stddev = np.sqrt(variances)
+    outer_stddev = np.outer(stddev, stddev)
+    cov = corr * outer_stddev
+    return cov
+    
 def format_size(size_bytes) -> str:
     """Convert bytes to a human-readable format."""
     for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
