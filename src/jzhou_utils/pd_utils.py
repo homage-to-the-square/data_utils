@@ -66,6 +66,27 @@ def corr_and_var_to_cov(corr, variances):
     outer_stddev = np.outer(stddev, stddev)
     cov = corr * outer_stddev
     return cov
+
+def cosine_similarity(vec1, vec2) -> np.array:
+    """
+    Compute the cosine similarity between two vectors.
+    
+    Parameters:
+        vec1, vec2 (array-like): Input vectors of equal length.
+        
+    Returns:
+        float: Cosine similarity between vec1 and vec2.
+    """
+    v1 = np.array(vec1)
+    v2 = np.array(vec2)
+    
+    dot_product = np.dot(v1, v2)
+    norm_product = np.linalg.norm(v1) * np.linalg.norm(v2)
+    
+    if norm_product == 0:
+        return 0.0  # convention: similarity with a zero vector is 0
+    
+    return dot_product / norm_product
     
 def format_size(size_bytes) -> str:
     """Convert bytes to a human-readable format."""

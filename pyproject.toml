@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jzhou_utils"
-version = "0.0.10"
+version = "0.1.0"
 # note: re, warnings should not be added as dependencies
 dependencies = [
     "requests",
@@ -14,7 +14,10 @@ dependencies = [
     "scipy",
     "datetime",
     "typing",
-    "plotly"
+    "plotly",
+    "fitz",
+    "sqlite3",
+    "python-dateutil"
 ]
 
 authors = [

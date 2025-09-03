@@ -1,6 +1,11 @@
 import pandas as pd
 import datetime as dt
 from typing import Union
+from dateutil.parser import parse as date_parse
+from functools import partial
+
+DEFAULT_DATE_PARSE = partial(date_parse, default = dt.date(1600, 1, 1))
+
 
 def YYYYMM_to_date(s: pd.Series) -> pd.Series:
     """
@@ -16,6 +21,12 @@ def date_id_to_date(date_id: Union[int, pd.Series]):
 
 def date_to_date_id(date: dt.date) -> int:
     return int(date.strftime('%Y%m%d'))
+
+def datelike_to_yearmo(datelike: Union[str, dt.datetime, dt.date]) -> int:
+    # warning: dt.datetime inherits from dt.date
+    if isinstance(datelike, str):
+        datelike = DEFAULT_DATE_PARSE(datelike)
+    return datelike.year * 100 + datelike.month
 
 def get_friday_of_isocalendar(iso_year, iso_week):
     # Get the first day of the ISO week
