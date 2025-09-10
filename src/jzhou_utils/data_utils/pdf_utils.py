@@ -1,4 +1,5 @@
 import fitz  # PyMuPDF
+import re
 
 def extract_text_from_pdf(pdf_path, page_range=None, page_separator: str = ""):
     """
@@ -60,7 +61,7 @@ def clean_line(line):
     # deal with whitespace around hyphens
     temp_line = re.sub(r"\s*[-]\s*", "-", line)
     STR_REPLACE_DICT = {
-      "’"  : "'",
+      "’": "'",
       'ﬂ': 'fl',
       'ﬁ': 'fi',
       'ﬃ': 'ffi',
@@ -69,13 +70,18 @@ def clean_line(line):
       '1ï': 'li',
       'ﬀ': 'ff',
       'ƞ': 'tf',
+      '•': '',
       'Batle': 'Battle',
       'Kiten': 'Kitten',
       'Guter': 'Gutter',
-      'Heliod, Sun Crowned': 'Heliod, Sun-Crowned' 
+      'Heliod, Sun Crowned': 'Heliod, Sun-Crowned',
+      'Eeire': 'Eerie',
+      'Subline': 'Sublime',
+      'Brokenbow': 'Brokenbrow',
+      'Yidario': 'Yidaro'
     }
     
-    for key, value in STR_REPLACE_DICT.items():    
+    for key, value in STR_REPLACE_DICT.items():
         temp_line = temp_line.replace(key, value)
 
     # deal with training whitespaces
